@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Bullet.PNG" type="Texture" id=2]
+
+[node name="Bullet" type="Area2D"]
+scale = Vector2( 1.25, 1 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 8, -8.7, 8, -6.7, 11.3, -2.2, 10.2, 0, 10, 3, 7.7, 3, -0.700001, 10.4, -3, 9.3, -3, 8.1, -9, 4.1, -9, -0.799999, -8.1, -1.7, -11.2, -8, -7.8, -8, -7, -8.8, -7, -11.4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
