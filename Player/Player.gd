@@ -7,11 +7,13 @@ var rot_speed = 5.0
 
 var nose = Vector2(0,-60)
 
-var health = 100.0
+var health = 10.0
 
 onready var Bullet = load("res://Player/Bullet.tscn")
 onready var Explosion = load("res://Effects/Explosion.tscn")
 var Effects = null
+
+var Bullet_Sound = null
 
 func _ready():
 	pass
@@ -42,6 +44,9 @@ func get_input():
 func shoot():
 	Effects = get_node_or_null("/root/Game/Effects")
 	if Effects != null:
+		Bullet_Sound = get_node_or_null("/root/Game/Bullet_Sound")
+		if Bullet_Sound != null:
+			Bullet_Sound.play()
 		var bullet = Bullet.instance()
 		Effects.add_child(bullet)
 		bullet.rotation = rotation
@@ -55,6 +60,7 @@ func damage(d):
 			var explosion = Explosion.instance()
 			explosion.global_position = global_position
 			Effects.add_child(explosion)
+			Global.update_lives(-1)
 		queue_free()
 
 

@@ -333,7 +333,6 @@ animations = [ {
 
 [node name="Explosion" type="AnimatedSprite"]
 frames = SubResource( 65 )
-frame = 63
 offset = Vector2( 0, -30 )
 script = ExtResource( 2 )
 

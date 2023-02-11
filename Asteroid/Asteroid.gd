@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var velocity = Vector2(0, -100.0)
 var health = 1
+var score = 10
 
 func _ready():
 	velocity.rotated(randf()*2*PI)
@@ -15,4 +16,5 @@ func _physics_process(delta):
 func damage(d):
 	health -= d
 	if health <= 0:
+		Global.update_score(score)
 		queue_free()
